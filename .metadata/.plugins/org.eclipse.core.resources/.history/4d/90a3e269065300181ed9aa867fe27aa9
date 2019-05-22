@@ -1,0 +1,19 @@
+package com.taotao.portal.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.taotao.portal.service.CartService;
+
+@Controller
+public class CartController {
+	@Autowired
+	CartService cartService;
+
+	public String addCartItem(@PathVariable Long itemId, @RequestParam(defaultValue = "1") Integer num,
+			HttpServletRequest request, HttpServletResponse response) {
+		TaotaoResult result = cartService.addCartItem(itemId, num, request, response);
+		return "cartSuccess";
+	}
+
+}

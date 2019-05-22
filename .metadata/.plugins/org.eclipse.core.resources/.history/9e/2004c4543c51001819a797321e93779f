@@ -1,0 +1,94 @@
+package com.taotao.sso.service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.mapper.TbUserMapper;
+import com.taotao.pojo.TbUser;
+import com.taotao.pojo.TbUserExample;
+import com.taotao.pojo.TbUserExample.Criteria;
+import com.taotao.sso.dao.JedisClient;
+
+@Service
+public class UserServiceImpl implements UserService {
+	@Autowired
+	private TbUserMapper tbUserMapper;
+
+	@Autowired
+	private JedisClient jedisClient;
+
+	@Override
+	public TaotaoResult checkData(String content, Integer type) {
+		TbUserExample example = new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		if (1 == type) {
+			// SELETCT * from tb_user where username = 'zhangsan1'
+			criteria.andUsernameEqualTo(content);
+		} else if (2 == type) {
+			// SELETCT * from tb_user where phone = '13065895214'
+			criteria.andPhoneEqualTo(content);
+		} else if (3 == type) {
+			// SELETCT * from tb_user where email = 'wei@tcu.edu'
+			criteria.andEmailEqualTo(content);
+		} else {
+
+		}
+		List<TbUser> list = tbUserMapper.selectByExample(example);
+		if (list == null || list.size() == 0) {// pass the check data
+			return TaotaoResult.ok(true);
+		}
+
+		return TaotaoResult.ok(false);
+	}
+
+	@Override
+	public TaotaoResult createUser(TbUser user) {
+		user.setUpdated(new Date());
+		user.setCreated(new Date());
+		// MD5 encryption
+		try {
+			user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		tbUserMapper.insert(user);
+		return TaotaoResult.ok();
+	}
+
+	@Override
+	public TaotaoResult userLogin(String username, String password) {
+		// select based on username
+		TbUserExample example = new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUsernameEqualTo(username);
+		List<TbUser> list = tbUserMapper.selectByExample(example);
+		if (list == null || list.size() == 0) {// username doesn't exist
+			return TaotaoResult.build(400, "Username or password wrong");
+		}
+		TbUser user = list.get(0);
+		// compare password
+		if (!(DigestUtils.md5DigestAsHex(password.getBytes()) == user.getPassword())) {
+			return TaotaoResult.build(400, "Username or password wrong");
+		}
+
+		// generate a token for valid user log on
+		String token = UUID.randomUUID().toString();
+
+		// write to Redis
+		try {
+			jedisClient.set(token, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return TaotaoResult.ok(token);
+	}
+
+}

@@ -1,0 +1,20 @@
+#Rest service params
+REST_BASE_URL=http://localhost:8081/rest
+#Big ad position url
+REST_INDEX_AD_URL=/content/list/89
+#More ad urls......
+
+#Search service base URL
+SEARCH_BASE_URL=http://localhost:8083/search/query
+
+#Product basic info url
+ITEM_INFO_URL=/item/info/
+
+#Product Description url
+ITEM_DESC_URL=/item/desc/
+
+#Product Param url
+ITEM_PARAM_URL=/item/param/
+
+#SSO URL
+SSO_BASE_URL=http://localhost:8084/user

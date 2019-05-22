@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-aop-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-beans-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/context/spring-context-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-context-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-mvc-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-tx-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/util/spring-util-4.0.xsd" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/spring约束/spring-util-4.0.xsd"/>
+  <public publicId="-//mybatis.org//DTD Config 3.0//EN" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/mybatis3-dtd/mybatis-3-config.dtd"/>
+  <public publicId="-//mybatis.org//DTD Mapper 3.0//EN" uri="file:///C:/Users/bingyang.wei/Desktop/【入门推荐】淘淘商城实战高并发分布式项目(有源码)/02.第二天（框架整合，后台系统搭建）【更多分享关注微信公众号：架构师小秘圈】/01.参考资料/mybatis3-dtd/mybatis-3-mapper.dtd"/>
+</catalog>

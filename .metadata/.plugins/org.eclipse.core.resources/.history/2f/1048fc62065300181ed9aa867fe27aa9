@@ -1,0 +1,13 @@
+package com.taotao.portal.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.taotao.portal.service.CartService;
+
+@Controller
+public class CartController {
+	@Autowired
+	CartService cartService;
+
+}

@@ -1,0 +1,13 @@
+package com.taotao.portal.service;
+
+import com.taotao.pojo.TbUser;
+
+public class UserServiceImpl implements UserService{
+
+	@Override
+	public TbUser getUserByToken(String token) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

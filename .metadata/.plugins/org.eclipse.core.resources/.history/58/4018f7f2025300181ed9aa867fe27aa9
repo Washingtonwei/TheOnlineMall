@@ -1,0 +1,53 @@
+package com.taotao.portal.service;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.common.utils.CookieUtils;
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.common.utils.JsonUtils;
+import com.taotao.portal.pojo.CartItem;
+import com.taotao.portal.pojo.ItemInfo;
+
+public class CartServiceImpl implements CartService {
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+
+	@Value("${ITEM_INFO_URL}")
+	private String ITEM_INFO_URL;
+
+	@Override
+	public TaotaoResult addCartItem(long itemId, int num, HttpServletRequest request, HttpServletResponse response) {
+		// Before we use HttpClientUtil, check the current cart to see if it
+		// already exists
+		// Get list of cartItems.
+
+		CartItem cartItem = new CartItem();
+
+		String json = HttpClientUtil.doGet(REST_BASE_URL + ITEM_INFO_URL + itemId);
+		TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, ItemInfo.class);
+		if (taotaoResult.getStatus() == 200) {
+			ItemInfo item = (ItemInfo) taotaoResult.getData();
+			cartItem.setId(item.getId());
+			cartItem.setImage(item.getImage() == null ? "" : item.getImages()[0]);
+			cartItem.setTitle(item.getTitle());
+			cartItem.setNum(num);
+			cartItem.setPrice(item.getPrice());
+		}
+
+	}
+
+	// get cart items from cookies
+	private List<CartItem> getCartItemList(HttpServletRequest request) {
+		String cartJson = CookieUtils.getCookieValue(request, "TT_CART", true);
+		List<CartItem> list = JsonUtils.jsonToList(cartJson, CartItem.class);
+		
+	}
+
+}

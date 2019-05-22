@@ -1,0 +1,15 @@
+package com.taotao.portal.service;
+
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.portal.pojo.Order;
+
+public class OrderServiceImpl implements OrderService {
+
+	@Override
+	public TaotaoResult createOrder(Order order) {
+		HttpClientUtil.doGet(url);
+		return null;
+	}
+
+}

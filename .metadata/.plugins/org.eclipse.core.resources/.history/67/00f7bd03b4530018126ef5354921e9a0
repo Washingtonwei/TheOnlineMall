@@ -1,0 +1,2 @@
+#starting order id for redis
+ORDER_GEN_KEY=ORDER_GEN_KEY

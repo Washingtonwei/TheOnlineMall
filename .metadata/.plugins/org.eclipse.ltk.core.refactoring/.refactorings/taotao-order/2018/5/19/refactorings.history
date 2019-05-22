@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Order.java&apos; to &apos;taotao-portal/src/main/java/com.taotao.portal.pojo&apos;&#x0D;&#x0A;- Original project: &apos;taotao-order&apos;&#x0D;&#x0A;- Destination element: &apos;taotao-portal/src/main/java/com.taotao.portal.pojo&apos;&#x0D;&#x0A;- Original element: &apos;com.taotao.order.pojo.Order.java&apos;" description="Copy compilation unit" destination="=taotao-portal/src\/main\/java&lt;com.taotao.portal.pojo" element1="/src\/main\/java&lt;com.taotao.order.pojo{Order.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1525896457656" units="1" version="1.0"/>
+</session>

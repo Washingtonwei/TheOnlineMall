@@ -1,0 +1,75 @@
+package com.taotao.order.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.mapper.TbOrderItemMapper;
+import com.taotao.mapper.TbOrderMapper;
+import com.taotao.mapper.TbOrderShippingMapper;
+import com.taotao.order.dao.JedisClient;
+import com.taotao.pojo.TbOrder;
+import com.taotao.pojo.TbOrderItem;
+import com.taotao.pojo.TbOrderShipping;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+	@Autowired
+	TbOrderMapper tbOrderMapper;
+	@Autowired
+	TbOrderItemMapper tbOrderItemMapper;
+	@Autowired
+	TbOrderShippingMapper tbOrderShippingMapper;
+	@Autowired
+	JedisClient jedisClient;
+
+	@Value("${ORDER_GEN_KEY}")
+	private String ORDER_GEN_KEY;
+
+	@Value("${ORDER_INIT_ID}")
+	private String ORDER_INIT_ID;
+
+	@Value("${ORDER_DETAIL_GEN_KEY}")
+	private String ORDER_DETAIL_GEN_KEY;
+
+	// this method insert to three tables.
+	@Override
+	public TaotaoResult createOrder(TbOrder order, List<TbOrderItem> itemList, TbOrderShipping orderShipping) {
+		// generate a unique id for order
+		String key = jedisClient.get(ORDER_GEN_KEY);
+		if (StringUtils.isBlank(key)) {// if there is no such key
+			jedisClient.set(ORDER_GEN_KEY, ORDER_INIT_ID);
+		}
+		long orderId = jedisClient.incr(ORDER_GEN_KEY);
+		// fill up order pojo
+		order.setOrderId(orderId + "");
+		// 状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭
+		order.setStatus(1);
+		Date date = new Date();
+		order.setCreateTime(date);
+		order.setUpdateTime(date);
+		tbOrderMapper.insert(order);
+
+		// insert order items
+		for (TbOrderItem tbOrderItem : itemList) {
+			// just need to gen and fill up id
+			tbOrderItem.setId(jedisClient.incr(ORDER_DETAIL_GEN_KEY) + "");
+			tbOrderItem.setOrderId(orderId + "");
+			// insert to tb item table
+			tbOrderItemMapper.insert(tbOrderItem);
+		}
+		// insert to order shipping table
+		orderShipping.setOrderId(orderId + "");
+		orderShipping.setCreated(date);
+		orderShipping.setUpdated(date);
+		tbOrderShippingMapper.insert(orderShipping);
+
+		return TaotaoResult.ok();
+	}
+
+}

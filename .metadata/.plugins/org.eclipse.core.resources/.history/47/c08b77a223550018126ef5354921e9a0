@@ -1,0 +1,57 @@
+package com.taotao.portal.interceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.taotao.common.utils.CookieUtils;
+import com.taotao.pojo.TbUser;
+import com.taotao.portal.service.UserServiceImpl;
+
+public class LoginInterceptor implements HandlerInterceptor {
+
+	@Autowired
+	private UserServiceImpl userService;
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		// check if the user is logged on or not
+		// get token from cookie
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		// get user info based on token, invoke taotao-sso service, better not
+		// write the service in here
+		TbUser user = userService.getUserByToken(token);
+		// if we can get the info, user is already logged on, go ahead,
+		// otherwise,
+		// redirect to log on page and pass the current url to it also, return
+		// false
+		if (user == null) {
+			response.sendRedirect(
+					userService.SSO_BASE_URL + userService.SSO_PAGE_LOGIN + "?redirect=" + request.getRequestURL());
+			return false;
+		}
+		//put user info in request, this will be used by controller
+		request.setAttribute("user", user);
+		return true;// if user is already logged on
+
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// After returns ModelAndView
+
+	}
+
+}

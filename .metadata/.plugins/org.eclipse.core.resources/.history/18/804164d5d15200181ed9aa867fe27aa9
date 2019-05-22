@@ -1,0 +1,5 @@
+package com.taotao.sso.controller;
+
+public class PageController {
+
+}

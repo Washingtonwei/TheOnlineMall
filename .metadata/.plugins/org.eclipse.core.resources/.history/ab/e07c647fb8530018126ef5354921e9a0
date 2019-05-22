@@ -1,0 +1,15 @@
+package com.taotao.order.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.taotao.common.pojo.TaotaoResult;
+
+@Controller
+public class OrderController {
+	@RequestBody
+	public TaotaoResult createOrder(@RequestBody Order order) {
+		
+	}
+
+}

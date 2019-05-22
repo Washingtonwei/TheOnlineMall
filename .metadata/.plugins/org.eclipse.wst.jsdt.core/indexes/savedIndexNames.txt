@@ -1,0 +1,13 @@
+INDEX VERSION 1.3+C:\Users\bingyang.wei\Desktop\TaotaoProject\template\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1316427803.index
+2511368758.index
+248507095.index
+2913356879.index
+2832769381.index
+1259922151.index
+3609442454.index
+894149172.index
+3237631926.index
+3462472297.index
+3109012304.index
+2141462497.index

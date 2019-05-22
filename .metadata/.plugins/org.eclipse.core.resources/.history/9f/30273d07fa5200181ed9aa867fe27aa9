@@ -1,0 +1,25 @@
+package com.taotao.portal.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.pojo.TbUser;
+@Service
+public class UserServiceImpl implements UserService{
+	@Value("${SSO_BASE_URL}")
+	private String SSO_BASE_URL;
+	
+	#SSO URL
+	SSO_BASE_URL=http://localhost:8084
+
+	#Get user info based on token
+	SSO_USER_TOKEN=/user/token/
+	
+	@Override
+	public TbUser getUserByToken(String token) {
+		HttpClientUtil.doGet(url, param);
+		return null;
+	}
+
+}

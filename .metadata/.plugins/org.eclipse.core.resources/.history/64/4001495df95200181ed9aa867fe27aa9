@@ -1,0 +1,44 @@
+package com.taotao.portal.interceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.taotao.common.utils.CookieUtils;
+
+public class LoginInterceptor implements HandlerInterceptor {
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		// check if the user is logged on or not
+		// get token from cookie
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		// get user info based on token, invoke taotao-sso service
+		
+
+		// if we can get the info, user is already logged on, go ahead, otherwise,
+		// redirect to log on page and pass the current url to it also, return false
+		
+		
+
+		return false;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// After returns ModelAndView
+
+	}
+
+}

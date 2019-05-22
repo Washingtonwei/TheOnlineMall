@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- set pager -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<!-- set DB e.g. Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL -->
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins>
+</configuration>

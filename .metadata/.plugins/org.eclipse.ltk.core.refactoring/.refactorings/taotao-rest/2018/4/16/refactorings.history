@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.taotao.rest.service.ContentServiceImp&apos; to &apos;ContentServiceImpl&apos;&#x0D;&#x0A;- Original project: &apos;taotao-rest&apos;&#x0D;&#x0A;- Original element: &apos;com.taotao.rest.service.ContentServiceImp&apos;&#x0D;&#x0A;- Renamed element: &apos;com.taotao.rest.service.ContentServiceImpl&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ContentServiceImp&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.taotao.rest.service{ContentServiceImp.java[ContentServiceImp" matchStrategy="1" name="ContentServiceImpl" qualified="false" references="true" similarDeclarations="false" stamp="1524184544385" textual="false" version="1.0"/>
+</session>

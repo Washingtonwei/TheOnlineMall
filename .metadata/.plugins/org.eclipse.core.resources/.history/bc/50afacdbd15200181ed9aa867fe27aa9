@@ -1,0 +1,11 @@
+package com.taotao.sso.controller;
+
+@Controller
+@RequestMapping("/page")
+public class PageController {
+
+	@RequestMapping("/register")
+	public String showRegister() {
+		return "register";
+	}
+}

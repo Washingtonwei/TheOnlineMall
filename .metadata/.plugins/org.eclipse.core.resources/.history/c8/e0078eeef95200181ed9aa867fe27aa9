@@ -1,0 +1,16 @@
+package com.taotao.portal.service;
+
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.pojo.TbUser;
+@Service
+public class UserServiceImpl implements UserService{
+
+	@Override
+	public TbUser getUserByToken(String token) {
+		HttpClientUtil.doGet(url, param);
+		return null;
+	}
+
+}

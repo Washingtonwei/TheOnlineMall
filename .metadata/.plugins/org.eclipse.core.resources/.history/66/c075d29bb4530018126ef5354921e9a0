@@ -1,0 +1,55 @@
+package com.taotao.order.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.mapper.TbOrderItemMapper;
+import com.taotao.mapper.TbOrderMapper;
+import com.taotao.mapper.TbOrderShippingMapper;
+import com.taotao.order.dao.JedisClient;
+import com.taotao.pojo.TbOrder;
+import com.taotao.pojo.TbOrderItem;
+import com.taotao.pojo.TbOrderShipping;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+	@Autowired
+	TbOrderMapper tbOrderMapper;
+	@Autowired
+	TbOrderItemMapper tbOrderItemMapper;
+	@Autowired
+	TbOrderShippingMapper tbOrderShippingMapper;
+	@Autowired
+	JedisClient jedisClient;
+
+	@Value("${ORDER_GEN_KEY}")
+	private String ORDER_GEN_KEY;
+
+	@Value("${ORDER_INIT_ID}")
+	private String ORDER_INIT_ID;
+
+	// this method insert to three tables.
+	@Override
+	public TaotaoResult createOrder(TbOrder order, List<TbOrderItem> itemList, TbOrderShipping orderShipping) {
+		// generate a unique id for order
+		jedisClient.get(ORDER_GEN_KEY);
+		order.setCreateTime(new Date());
+		order.setUpdateTime(new Date());
+		tbOrderMapper.insert(order);
+
+		for (TbOrderItem tbOrderItem : itemList) {
+			tbOrderItem.setId(order.getOrderId());
+			tbOrderItemMapper.insert(tbOrderItem);
+		}
+
+		tbOrderShippingMapper.insert(orderShipping);
+
+		return TaotaoResult.ok();
+	}
+
+}

@@ -1,0 +1,6 @@
+#define a key first, can be any name
+ORDER_GEN_KEY=ORDER_GEN_KEY
+#Starting order id
+ORDER_INIT_ID=100544
+#define a key for order item
+ORDER_DETAIL_GEN_KEY

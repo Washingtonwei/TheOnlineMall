@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 elements to &apos;css&apos;&#x0D;&#x0A;- Original project: &apos;taotao-portal&apos;&#x0D;&#x0A;- Destination element: &apos;css&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     saved_resource&#x0D;&#x0A;     addtocart-album.css&#x0D;&#x0A;- Update references to refactored element" description="Move files" element1="src/main/webapp/js/saved_resource" element2="src/main/webapp/js/addtocart-album.css" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1525871037850" target="src/main/webapp/css" units="0" version="1.0"/>
+</session>

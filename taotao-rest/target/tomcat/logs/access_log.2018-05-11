@@ -1,0 +1,4 @@
+127.0.0.1 - - [11/May/2018:09:07:14 -0500] "GET /rest/content/list/89 HTTP/1.1" 200 1032 http-bio-8081-exec-1 233
+127.0.0.1 - - [11/May/2018:09:07:26 -0500] "GET /rest/item/info/1188043 HTTP/1.1" 200 318 http-bio-8081-exec-3 245
+127.0.0.1 - - [11/May/2018:09:07:27 -0500] "GET /rest/item/desc/1188043 HTTP/1.1" 200 32508 http-bio-8081-exec-5 27
+127.0.0.1 - - [11/May/2018:09:07:34 -0500] "GET /rest/item/info/1188043 HTTP/1.1" 200 318 http-bio-8081-exec-7 6
