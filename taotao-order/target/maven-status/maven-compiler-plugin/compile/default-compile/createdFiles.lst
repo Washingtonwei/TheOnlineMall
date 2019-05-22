@@ -1,7 +1,0 @@
-com\taotao\order\pojo\Order.class
-com\taotao\order\dao\JedisClient.class
-com\taotao\order\service\OrderService.class
-com\taotao\order\service\OrderServiceImpl.class
-com\taotao\order\dao\JedisClientSingle.class
-com\taotao\order\controller\OrderController.class
-com\taotao\order\dao\JedisClientCluster.class
